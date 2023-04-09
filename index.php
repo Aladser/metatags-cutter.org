@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>Применение итератора</title>
+    <title> Итератор </title>
 </head>
 <body>
     <?
@@ -25,7 +25,7 @@
 
     $count = $tree->count();
     ?>
-    <p class='info'><?=nl2br("Количество DOM-элементов: $count\n")?></p>
+    <p class='info'><?="Количество DOM-элементов: $count"?></p>
     <?
     // удаление метатегов
     $ti=0; $di=0; $ki=0;
@@ -48,7 +48,7 @@
         $tree->next();
     }
     ?>
-    <p class='info'><?=nl2br("Найдены атрибуты: title: $ti; description: $di; keywords: $ki;\n\n")?></p> 
+    <p class='info'><?="Найдены атрибуты: title: $ti; description: $di; keywords: $ki"?></p> 
     <? echo $doc->saveHTML(); ?>    
 </body>
 </html>
