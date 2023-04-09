@@ -48,7 +48,7 @@
         $tree->next();
     }
     ?>
-    <p class='info'><?="Найдены атрибуты: title: $ti; description: $di; keywords: $ki"?></p> 
+    <p class='info'><?="Вырезаны атрибуты: title: $ti; description: $di; keywords: $ki"?></p> 
     <? echo $doc->saveHTML(); ?>    
 </body>
 </html>
