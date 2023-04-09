@@ -48,6 +48,11 @@ class MyDOMTree implements Iterator
     { 
       return $this -> elements[$elem];
     }
+
+    // количество элементов
+    public function count(){
+      return count($this -> elements);
+    }
 }
 
 ?>

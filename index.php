@@ -5,43 +5,36 @@ require_once('MyDOMTree.php');
  // ДОМ-дерево
  $doc = new DOMDocument();
  $doc->loadHTMLFile("page.html");
+ 
+  // DOM-дерево как итератор
  $elements = [];
  foreach ($doc->getElementsByTagName('*') as $row) {
      $elements[] = $row;
  }
- // DOM-дерево как итератор
  $tree = new MyDOMTree();
+ for($i=0; $i<count($elements); $i++) {$tree->set($i, $elements[$i]);}
 
- /*
- $reg -> set("DS",DIRECTORY_SEPARATOR)
-    -> set("APP_HOME", '.')
-    -> set("AUTO_RELOAD",true);
- foreach ( $reg as $option => $value ) {
-    echo nl2br("[$option] = $value\n");
- }
- echo nl2br("\n\n");
-*/
+ $count = $tree->count();
+ echo nl2br("Количество DOM-элементов: $count\n");
 
  $ti=0; $di=0; $ki=0;
- foreach ($elements as $row) {
+ foreach ($tree as $row) {
     if($row->hasAttribute('title')){
-        $title = $row->getAttribute('title');
-        if($title !== '') echo nl2br("*$title*\n");
-        else $ti++;
+        $row->removeAttribute('title');
+        $ti++;
     }
 
     if($row->hasAttribute('description')){
-        $description = $row->getAttribute('description');
-        if($description !== '') echo nl2br("*$description*\n");
-        else $di++;
+        $row->removeAttribute('description');
+        $di++;
     }
 
     if($row->hasAttribute('keywords')){
-        $eywords = $row->getAttribute('keywords');
-        if($eywords !== '') echo nl2br("*$eywords*\n");
-        else $ki++;
+        $row->removeAttribute('keywords');
+        $ki++;
     }
  }
+echo nl2br("Найдены атрибуты: title: $ti; description: $di; keywords: $ki\n\n");
 
- echo "<br>$ti $di $ki";
+echo $doc->saveHTML();
 ?>
