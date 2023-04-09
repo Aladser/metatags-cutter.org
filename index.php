@@ -6,17 +6,17 @@ require_once('MyDOMTree.php');
  $doc = new DOMDocument();
  $doc->loadHTMLFile("page.html");
  
-  // DOM-дерево как итератор
- $elements = [];
- foreach ($doc->getElementsByTagName('*') as $row) {
-     $elements[] = $row;
- }
- $tree = new MyDOMTree();
- for($i=0; $i<count($elements); $i++) {$tree->set($i, $elements[$i]);}
+// DOM-дерево как итератор
+$tree = new MyDOMTree();
+$i = 0;
+foreach ($doc->getElementsByTagName('*') as $row) {
+    $tree->set($i++, $row);
+}
 
  $count = $tree->count();
  echo nl2br("Количество DOM-элементов: $count\n");
 
+ // удаление метатегов
  $ti=0; $di=0; $ki=0;
  foreach ($tree as $row) {
     if($row->hasAttribute('title')){
