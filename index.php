@@ -2,7 +2,17 @@
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_WARNING);
 require_once('MyDOMTree.php');
 
- $reg = new MyDOMTree();
+ // ДОМ-дерево
+ $doc = new DOMDocument();
+ $doc->loadHTMLFile("page.html");
+ $elements = [];
+ foreach ($doc->getElementsByTagName('*') as $row) {
+     $elements[] = $row;
+ }
+ // DOM-дерево как итератор
+ $tree = new MyDOMTree();
+
+ /*
  $reg -> set("DS",DIRECTORY_SEPARATOR)
     -> set("APP_HOME", '.')
     -> set("AUTO_RELOAD",true);
@@ -10,16 +20,10 @@ require_once('MyDOMTree.php');
     echo nl2br("[$option] = $value\n");
  }
  echo nl2br("\n\n");
-
-
-
- // ДОМ-дерево в массив
- $doc = new DOMDocument();
- $doc->loadHTMLFile("page.html");
- $rows = $doc->getElementsByTagName('*');
+*/
 
  $ti=0; $di=0; $ki=0;
- foreach ($rows as $row) {
+ foreach ($elements as $row) {
     if($row->hasAttribute('title')){
         $title = $row->getAttribute('title');
         if($title !== '') echo nl2br("*$title*\n");
@@ -39,5 +43,5 @@ require_once('MyDOMTree.php');
     }
  }
 
- echo "$ti $di $ki<br>";
+ echo "<br>$ti $di $ki";
 ?>
