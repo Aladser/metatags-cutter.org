@@ -18,7 +18,8 @@ foreach ($doc->getElementsByTagName('*') as $row) {
 
  // удаление метатегов
  $ti=0; $di=0; $ki=0;
- foreach ($tree as $row) {
+ while ($tree->valid()) {
+    $row = $tree->current();
     if($row->hasAttribute('title')){
         $row->removeAttribute('title');
         $ti++;
@@ -33,6 +34,7 @@ foreach ($doc->getElementsByTagName('*') as $row) {
         $row->removeAttribute('keywords');
         $ki++;
     }
+    $tree->next();
  }
 echo nl2br("Найдены атрибуты: title: $ti; description: $di; keywords: $ki\n\n");
 
