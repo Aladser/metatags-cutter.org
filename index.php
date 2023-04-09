@@ -36,7 +36,7 @@ foreach ($doc->getElementsByTagName('*') as $row) {
     }
     $tree->next();
  }
-echo nl2br("Найдены атрибуты: title: $ti; description: $di; keywords: $ki\n\n");
+echo nl2br("Найдены атрибуты: title: $ti; description: $di; keywords: $ki;\n\n");
 
 echo $doc->saveHTML();
 ?>
